@@ -1,0 +1,138 @@
+// ===================================================================================================
+//                           _  __     _ _
+//                          | |/ /__ _| | |_ _  _ _ _ __ _
+//                          | ' </ _` | |  _| || | '_/ _` |
+//                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
+//
+// This file is part of the Kaltura Collaborative Media Suite which allows users
+// to do with audio, video, and animation what Wiki platfroms allow them to do with
+// text.
+//
+// Copyright (C) 2006-2018  Kaltura Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+// @ignore
+// ===================================================================================================
+package com.kaltura.client.types;
+
+import android.os.Parcel;
+import com.google.gson.JsonObject;
+import com.kaltura.client.Params;
+import com.kaltura.client.utils.GsonParser;
+import com.kaltura.client.utils.request.MultiRequestBuilder;
+
+/**
+ * This class was generated using exec.php
+ * against an XML schema provided by Kaltura.
+ * 
+ * MANUAL CHANGES TO THIS CLASS WILL BE OVERWRITTEN.
+ */
+
+@SuppressWarnings("serial")
+@MultiRequestBuilder.Tokenizer(UnlimitedVendorCredit.Tokenizer.class)
+public class UnlimitedVendorCredit extends BaseVendorCredit {
+	
+	public interface Tokenizer extends BaseVendorCredit.Tokenizer {
+		String credit();
+		String fromDate();
+		String toDate();
+	}
+
+	private Integer credit;
+	private Integer fromDate;
+	private Integer toDate;
+
+	// credit:
+	public Integer getCredit(){
+		return this.credit;
+	}
+	// fromDate:
+	public Integer getFromDate(){
+		return this.fromDate;
+	}
+	public void setFromDate(Integer fromDate){
+		this.fromDate = fromDate;
+	}
+
+	public void fromDate(String multirequestToken){
+		setToken("fromDate", multirequestToken);
+	}
+
+	// toDate:
+	public Integer getToDate(){
+		return this.toDate;
+	}
+	public void setToDate(Integer toDate){
+		this.toDate = toDate;
+	}
+
+	public void toDate(String multirequestToken){
+		setToken("toDate", multirequestToken);
+	}
+
+
+	public UnlimitedVendorCredit() {
+		super();
+	}
+
+	public UnlimitedVendorCredit(JsonObject jsonObject) throws APIException {
+		super(jsonObject);
+
+		if(jsonObject == null) return;
+
+		// set members values:
+		credit = GsonParser.parseInt(jsonObject.get("credit"));
+		fromDate = GsonParser.parseInt(jsonObject.get("fromDate"));
+		toDate = GsonParser.parseInt(jsonObject.get("toDate"));
+
+	}
+
+	public Params toParams() {
+		Params kparams = super.toParams();
+		kparams.add("objectType", "KalturaUnlimitedVendorCredit");
+		kparams.add("fromDate", this.fromDate);
+		kparams.add("toDate", this.toDate);
+		return kparams;
+	}
+
+
+    public static final Creator<UnlimitedVendorCredit> CREATOR = new Creator<UnlimitedVendorCredit>() {
+        @Override
+        public UnlimitedVendorCredit createFromParcel(Parcel source) {
+            return new UnlimitedVendorCredit(source);
+        }
+
+        @Override
+        public UnlimitedVendorCredit[] newArray(int size) {
+            return new UnlimitedVendorCredit[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeValue(this.credit);
+        dest.writeValue(this.fromDate);
+        dest.writeValue(this.toDate);
+    }
+
+    public UnlimitedVendorCredit(Parcel in) {
+        super(in);
+        this.credit = (Integer)in.readValue(Integer.class.getClassLoader());
+        this.fromDate = (Integer)in.readValue(Integer.class.getClassLoader());
+        this.toDate = (Integer)in.readValue(Integer.class.getClassLoader());
+    }
+}
+
