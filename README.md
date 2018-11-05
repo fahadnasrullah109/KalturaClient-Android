@@ -1,2 +1,2 @@
 # KalturaClient-Android
-This is and Android client library for Kaltura.
+This is an Android client library for Kaltura.
